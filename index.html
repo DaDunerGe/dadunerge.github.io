@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>王志玮是给！</title>
+  <style>
+    /* 全局重置 + 全屏背景 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at 20% 30%, #0b0b1a, #030314);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
+      overflow: hidden;          /* 防止滚动，全屏沉浸 */
+      position: relative;
+    }
+
+    /* 主容器 — 保证内容整体居中，但标题可自由移动 */
+    .blog-home {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ---------- 夸张的大标题 ---------- */
+    .crazy-title {
+      font-size: clamp(3.5rem, 18vw, 12rem);
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+      font-family: 'Segoe UI', 'Poppins', 'Impact', sans-serif;
+      
+      /* 多重动画：颜色闪烁 + 位移 + 缩放 */
+      animation: 
+        crazyColor 1.8s infinite alternate ease-in-out,
+        crazyMove 2.4s infinite alternate ease-in-out,
+        crazyScale 1.2s infinite alternate cubic-bezier(0.34, 1.56, 0.64, 1);
+      
+      /* 让位移和缩放互不干扰，使用独立的变换属性 */
+      transform-origin: center;
+      
+      /* 防止标题在移动时撑开布局，使用绝对定位自由漂浮 */
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      translate: -50% -50%;
+      
+      /* 增加混合模式，让变色更炫 */
+      mix-blend-mode: screen;
+      
+      /* 可选：增加一点模糊光晕 */
+      filter: drop-shadow(0 0 30px rgba(255, 0, 255, 0.6));
+    }
+
+    /* 颜色疯狂变化 —— 包含彩虹色和发光 */
+    @keyframes crazyColor {
+      0% {
+        color: #ff0040;
+        text-shadow: 0 0 30px #ff0040, 0 0 60px #ff00c8, 0 0 100px #ff00ff;
+      }
+      20% {
+        color: #ffaa00;
+        text-shadow: 0 0 40px #ffaa00, 0 0 80px #ff5500, 0 0 120px #ff0000;
+      }
+      40% {
+        color: #00ffaa;
+        text-shadow: 0 0 30px #00ffaa, 0 0 70px #00ccff, 0 0 110px #0066ff;
+      }
+      60% {
+        color: #aa00ff;
+        text-shadow: 0 0 50px #aa00ff, 0 0 90px #ff00aa, 0 0 140px #ff00ff;
+      }
+      80% {
+        color: #00ccff;
+        text-shadow: 0 0 40px #00ccff, 0 0 80px #00ffaa, 0 0 120px #00ffff;
+      }
+      100% {
+        color: #ff00c8;
+        text-shadow: 0 0 60px #ff00c8, 0 0 110px #ff0088, 0 0 160px #ff0044;
+      }
+    }
+
+    /* 疯狂移动：左右上下跳跃 */
+    @keyframes crazyMove {
+      0% {
+        left: 46%;
+        top: 46%;
+      }
+      25% {
+        left: 54%;
+        top: 44%;
+      }
+      50% {
+        left: 48%;
+        top: 56%;
+      }
+      75% {
+        left: 52%;
+        top: 52%;
+      }
+      100% {
+        left: 44%;
+        top: 48%;
+      }
+    }
+
+    /* 夸张缩放：忽大忽小 */
+    @keyframes crazyScale {
+      0% {
+        scale: 0.9;
+      }
+      50% {
+        scale: 1.4;
+      }
+      100% {
+        scale: 0.85;
+      }
+    }
+
+    /* ---------- 底部小栏目（昵称） ---------- */
+    .nickname-badge {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
+      border-radius: 60px;
+      padding: 0.75rem 2.2rem;
+      
+      color: #f0eef8;
+      font-size: 1.2rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.2), 0 0 15px rgba(255, 0, 255, 0.2);
+      white-space: nowrap;
+      
+      /* 小动画：呼吸光晕 */
+      animation: badgeGlow 3s infinite alternate;
+      
+      z-index: 10;
+    }
+
+    @keyframes badgeGlow {
+      0% {
+        border-color: rgba(0, 255, 255, 0.3);
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), 0 0 30px rgba(255, 0, 255, 0.1);
+      }
+      100% {
+        border-color: rgba(255, 0, 255, 0.6);
+        box-shadow: 0 0 40px rgba(255, 0, 255, 0.5), 0 0 70px rgba(0, 255, 255, 0.3);
+      }
+    }
+
+    .nickname-badge span {
+      font-weight: 600;
+      background: linear-gradient(45deg, #aaffff, #ffaaff, #ffffaa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    /* 为移动端稍微调整底部栏大小 */
+    @media (max-width: 600px) {
+      .nickname-badge {
+        bottom: 1.8rem;
+        padding: 0.5rem 1.5rem;
+        font-size: 1rem;
+        letter-spacing: 0.1em;
+      }
+    }
+
+    /* 一个极简的跳转提示（可选，但为了不干扰设计，隐藏或很淡) */
+    .redirect-hint {
+      position: absolute;
+      bottom: 6.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255, 255, 255, 0.12);
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      pointer-events: none;
+      white-space: nowrap;
+      user-select: none;
+      z-index: 5;
+    }
+
+    /* 可选：加一点星尘背景，增强夸张感 */
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.5;
+      animation: twinkle 2s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.2; transform: scale(0.8); }
+      100% { opacity: 0.9; transform: scale(1.2); }
+    }
+
+    /* 用伪元素造一点额外的光斑 */
+    .blog-home::before {
+      content: '';
+      position: absolute;
+      width: 80vmax;
+      height: 80vmax;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,0,255,0.08) 0%, transparent 70%);
+      top: -20vmax;
+      left: -20vmax;
+      animation: rotateHue 15s infinite linear;
+      pointer-events: none;
+    }
+
+    @keyframes rotateHue {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="blog-home">
+    <!-- 夸张大标题 — 内容用“BLOG”或你的个人标识，这里用“BLOG” -->
+    <h1 class="crazy-title">王志玮是给！</h1>
+
+    <!-- 小栏目：显示你的昵称 -->
+    <div class="nickname-badge">
+      <span>@ 六力第一王帅    (不是给)</span>
+    </div>
+
+    <!-- 极淡的跳转提示，可删，但保留以示友好 -->
+    <div class="redirect-hint">5秒后跳转 蒋语 网站...</div>
+  </div>
+
+  <script>
+    (function() {
+      // ---------- 5秒后自动跳转至 a.com ----------
+      // 使用 window.location.href 进行跳转，符合需求
+      const REDIRECT_URL = 'https://a.com';   // 注：也可用 http://a.com，根据实际需要
+      const REDIRECT_DELAY = 5000;            // 5000毫秒 = 5秒
+
+      // 设置定时器
+      const redirectTimer = setTimeout(() => {
+        window.location.href = REDIRECT_URL;
+      }, REDIRECT_DELAY);
+
+      // (可选) 如果用户希望在跳转前取消，暂时不需要额外逻辑。
+      // 但为了更符合“自动跳转”的预期，不提供取消。
+
+      // 为了增加一点趣味，动态添加几个星星（纯装饰，不影响布局）
+      // 也可以省略，但会让页面更丰富。
+      function createStars() {
+        const container = document.querySelector('.blog-home');
+        if (!container) return;
+        const starCount = 40;
+        for (let i = 0; i < starCount; i++) {
+          const star = document.createElement('div');
+          star.className = 'star';
+          const size = Math.random() * 4 + 1; // 1~5px
+          star.style.width = size + 'px';
+          star.style.height = size + 'px';
+          star.style.left = Math.random() * 100 + '%';
+          star.style.top = Math.random() * 100 + '%';
+          // 随机动画延迟和时长
+          star.style.animationDelay = Math.random() * 3 + 's';
+          star.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
+          // 随机颜色 (淡淡的)
+          star.style.background = `hsl(${Math.random() * 360}, 80%, 70%)`;
+          star.style.boxShadow = '0 0 10px currentColor';
+          container.appendChild(star);
+        }
+      }
+
+      // 页面加载后生成星星装饰
+      window.addEventListener('load', createStars);
+    })();
+  </script>
+</body>
+</html>
